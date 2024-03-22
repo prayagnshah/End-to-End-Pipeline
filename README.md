@@ -50,7 +50,7 @@ airflow standalone - To start the airflow
 
 Once the airflow is running then copy the public IPv4 address and paste it in the browser with the port number 8080. You will see the airflow UI.
 
-Finally, copy the dag folder under airflow home folder. Please also set up the Airflow connection for S3KeySensor and Amazon Redshift [here](). For more information, you can also check the official [documentation](https://airflow.apache.org/).
+Finally, copy the dag folder under airflow home folder. Please also set up the Airflow connection for S3KeySensor and Amazon Redshift [here](docs/airflow_connections.md). For more information, you can also check the official [documentation](https://airflow.apache.org/).
 
 ### Creation of S3 Bucket
 
@@ -64,15 +64,15 @@ Create an S3 bucket in the AWS Management Console to store the extracted data fr
 
 ### Setting up Lambda Functions
 
-1. **Data Transfer Lambda Function**: This Lambda function is triggered when new data is uploaded to the original S3 bucket. It copies the data to another S3 bucket to ensure the original data remains intact.
+1. **Data Transfer Lambda Function**: This Lambda function is triggered when new data is uploaded to the original S3 bucket. It copies the data to another S3 bucket to ensure the original data remains intact. Just copying the data from one S3 bucket to another S3 bucket in JSON format. 
 
-Code to get the data transfer lambda function is [here]()
+Code to get the data transfer lambda function is [here](docs/zillow_data_copy_json.py)
 
 Make sure you trigger the Lambda function with the S3 bucket named **zillow-etl**. 
 
 2. **JSON to CSV Conversion Lambda Function**: This Lambda function converts the JSON data to CSV format before transferring it to Amazon Redshift.
 
-Code to get the JSON to CSV conversion lambda function is [here]()
+Code to get the JSON to CSV conversion lambda function is [here](docs/zillow_transformation_convert_to_csv_lambda.py)
 
 Make sure you trigger the Lambda function with the S3 bucket named **zillow-copy-of-raw-json-bucket**.
 
@@ -84,7 +84,7 @@ Create an Amazon Redshift cluster in the AWS Management Console to store the tra
 
 Redshift: For Redshift I used ra3.xlplus node type with single node structures. Make sure you check the prices before you start using it.
 
-Please add a connection for the Redshift in the Airflow UI. Refer to the image over [here]().
+Please add a connection for the Redshift in the Airflow UI. Refer to the image over [here](docs/airflow_connections.md).
 
 Write the SQL queries to create the tables in the Redshift cluster. Image for the SQL query is ![redshift](docs/images/Data-to-warehouse.png)
 
