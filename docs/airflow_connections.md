@@ -2,9 +2,9 @@
 
 ## Connection for the S3KeySensor
 
-![S3KeySensor](docs/images/S3KeySensor-connection.png)
+![S3KeySensor](images/S3KeySensor-connection.png)
 
 
 ## Connection for the Amazon Redshift
 
-![Amazon Redshift](docs/images/redshift-connection.png)
+![Amazon Redshift](images/redshift-connection.png)
